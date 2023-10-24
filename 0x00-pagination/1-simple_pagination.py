@@ -15,8 +15,7 @@ class Server:
         self.__dataset = None
 
     def dataset(self) -> List[List]:
-        """Cached dataset
-        """
+        """Cached dataset"""
         if self.__dataset is None:
             with open(self.data_file, 'r') as f:
                 reader = csv.reader(f)
@@ -46,8 +45,10 @@ class Server:
         Return:
             List of lists containing the required data from the dataset
         """
-        assert isinstance(page, int) and page > 0, "Page number must be a positive integer"
-        assert isinstance(page_size, int) and page_size > 0, "Page size must be a positive integer"
+        assert isinstance(
+            page, int) and page > 0, "Page number must be a positive integer"
+        assert isinstance(
+            page_size, int) and page_size > 0, "Page size must be a positive integer"
 
         dataset = self.dataset()
         try:
@@ -55,4 +56,3 @@ class Server:
             return dataset[start:end]
         except IndexError:
             return []
-

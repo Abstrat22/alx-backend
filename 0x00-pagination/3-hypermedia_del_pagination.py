@@ -6,6 +6,7 @@ Deletion-resilient hypermedia pagination
 import csv
 from typing import List, Dict
 
+
 class Server:
     """
     Server class to paginate a database of popular baby names.
@@ -71,4 +72,3 @@ class Server:
         response['page_size'] = len(data)
         response['next_index'] = index if index < data_length else None
         return response
-

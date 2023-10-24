@@ -7,6 +7,7 @@ from typing import List
 from typing import Dict
 from typing import Tuple
 
+
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
     Takes 2 integer arguments and returns a tuple of size two
@@ -21,6 +22,7 @@ def index_range(page: int, page_size: int) -> Tuple[int, int]:
     start = (page - 1) * page_size
     end = start + page_size
     return start, min(end, start + page_size)
+
 
 class Server:
     """Server class to paginate a database of popular baby names.
@@ -51,7 +53,8 @@ class Server:
         Args:
             value (int): The value to be asserted.
         """
-        assert isinstance(value, int) and value > 0, "Value must be a positive integer"
+        assert isinstance(
+            value, int) and value > 0, "Value must be a positive integer"
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """
@@ -92,4 +95,3 @@ class Server:
             "next_page": page + 1 if page + 1 <= total_pages else None
         }
         return info
-
