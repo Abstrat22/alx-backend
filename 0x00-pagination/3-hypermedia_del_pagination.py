@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
+
 """
-Deletion-resilient hypermedia pagination
+Deletion-resilient hypermedia pagination for a database of popular baby names.
 """
 
 import csv
@@ -9,18 +10,26 @@ from typing import List, Dict
 
 class Server:
     """
-    Server class to paginate a database of popular baby names.
+    A server class to facilitate the pagination of a
+    database of popular baby names.
     """
 
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
+        """
+        Initializes the Server class with the dataset and
+        indexed dataset attributes.
+        """
         self.__dataset = None
         self.__indexed_dataset = None
 
     def dataset(self) -> List[List]:
         """
-        Returns the cached dataset.
+        Retrieves the cached dataset.
+
+        Returns:
+            List[List]: The cached dataset without the header.
         """
         if self.__dataset is None:
             with open(self.DATA_FILE, 'r') as f:
@@ -31,28 +40,35 @@ class Server:
 
     def indexed_dataset(self) -> Dict[int, List]:
         """
-        Returns the dataset indexed by sorting position, starting at 0.
+        Retrieves the dataset indexed by sorting position, starting at 0.
+
+        Returns:
+            Dict[int, List]: The indexed dataset.
         """
         if self.__indexed_dataset is None:
             dataset = self.dataset()
+            # Limit the dataset size for optimization
             truncated_dataset = dataset[:1000]
             self.__indexed_dataset = {
                 i: dataset[i] for i in range(len(dataset))
             }
         return self.__indexed_dataset
 
-    def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
+    def get_hyper_index(self, index: int = None,
+                        page_size: int = 10) -> Dict:
         """
-        Retrieves data from the indexed dataset based on the provided index and page size.
+        Retrieves data from the indexed dataset based on
+        the provided index and page size.
         Args:
             index (int): The index of the first item in the current page.
             page_size (int): The required number of records per page.
+
         Returns:
-            dict: A dictionary with the following key-value pairs:
-                  - index: The index of the first item in the current page.
-                  - next_index: The index of the first item in the next page.
-                  - page_size: The current page size.
-                  - data: The actual page of the dataset.
+            Dict: A dictionary with the following key-value pairs:
+                - index: The index of the first item in the current page.
+                - next_index: The index of the first item in the next page.
+                - page_size: The current page size.
+                - data: The actual page of the dataset.
         """
         dataset = self.indexed_dataset()
         data_length = len(dataset)
