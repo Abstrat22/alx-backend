@@ -2,7 +2,7 @@
 """
 Flask app for rendering an HTML template with language support.
 """
-from flask import Flask, render_template, request  # Importing necessary modules
+from flask import Flask, render_template, request
 from flask_babel import Babel  # Importing Babel for language support
 
 
@@ -25,7 +25,9 @@ def get_locale():
     """
     Selects and returns the best language match based on supported languages.
     """
-    return request.accept_languages.best_match(app.config['LANGUAGES'])  # Selecting the best language for the request
+
+    # Selecting the best language for the request
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/', strict_slashes=False)
@@ -33,9 +35,11 @@ def index() -> str:
     """
     Renders the index HTML template.
     """
-    return render_template('3-index.html')  # Rendering the '3-index.html' template
+
+    # Rendering the '3-index.html' template
+    return render_template('3-index.html')
 
 
 if __name__ == "__main__":
-    app.run(port="5000", host="0.0.0.0", debug=True)  # Running the app on port 5000 and allowing debugging
-
+    # Running the app on port 5000 and allowing debugging
+    app.run(port="5000", host="0.0.0.0", debug=True)

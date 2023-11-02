@@ -26,9 +26,11 @@ def index() -> str:
     """
     Renders the index HTML template.
     """
-    return render_template('1-index.html')  # Rendering the '1-index.html' template
+
+    # Rendering the '1-index.html' template
+    return render_template('1-index.html')
 
 
 if __name__ == "__main__":
-    app.run(port="5000", host="0.0.0.0", debug=True)  # Running the app on port 5000 and allowing debugging
-
+    # Running the app on port 5000 and allowing debugging
+    app.run(port="5000", host="0.0.0.0", debug=True)

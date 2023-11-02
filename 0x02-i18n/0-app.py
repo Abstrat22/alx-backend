@@ -8,6 +8,8 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 # Route for the root URL ('/')
+
+
 @app.route('/', strict_slashes=False)
 def index() -> str:
     """
@@ -15,8 +17,9 @@ def index() -> str:
     """
     return render_template('0-index.html')
 
+
 # Run the Flask application if the script is executed directly
 if __name__ == "__main__":
-    # Run the app on port 5000, allowing access from all network interfaces, and with debugging enabled
+    # Run the app on port 5000, allowing access from
+    # all network interfaces, and with debugging enabled
     app.run(port="5000", host="0.0.0.0", debug=True)
-
