@@ -19,5 +19,6 @@ queue.process("push_notification_code", (job, done) => {
 
     // Call the sendNotification function with the job data
     sendNotification(phoneNumber, message);
+    done();
 
 })
